@@ -1,7 +1,7 @@
 const express=require('express')
 const router=express.Router()
 
-const Todo=require('../../models/todo')
+const Todo=require('../../models/todo')// 載入 Todo model
 
 router.get('/',(req,res)=>{
     Todo.find()// 取出 Todo model 裡的所有資料
