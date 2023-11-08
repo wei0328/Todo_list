@@ -65,10 +65,17 @@ app.post('/todos',(req,res)=>{
 
 app.post('/todos/:id/edit',(req,res)=>{
     const id=req.params.id
-    const name=req.body.name
+    const {name,isDone}=req.body
+    console.log(req.body)
     return Todo.findById(id)
         .then(todo=>{
             todo.name=name
+            //todo.isDone=isDone==='on' 等於以下if寫法
+            if(isDone==='on'){
+                todo.isDone=true
+            }else{
+                todo.isDone=false
+            }
             return todo.save()
         })
         .then(()=>res.redirect(`/todos/${id}`))
